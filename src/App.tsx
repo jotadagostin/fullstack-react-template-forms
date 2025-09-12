@@ -1,19 +1,32 @@
-import "./App.css"
+import "./App.css";
+import { Controller, useForm } from "react-hook-form";
 
 export default function App() {
+  const { control, handleSubmit } = useForm();
+
+  function onSubmit(data) {
+    console.log(data);
+  }
+
   return (
     <div>
-      <h1>Evento</h1>
+      <h1>Event </h1>
 
-      <form>
-        <input type="text" placeholder="Nome do evento" />
-        <span className="error">Nome é obrigatório</span>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Controller
+          control={control}
+          name="name"
+          render={({ field }) => (
+            <input type="text" placeholder="Nome do evento" {...field} />
+          )}
+        />
+        <span className="error">Name is required</span>
 
-        <input type="date" placeholder="Nome do evento" lang="pt-BR" />
+        <input type="date" placeholder="Nome do evento" />
 
         <select defaultValue="">
           <option value="" disabled>
-            Selecione...
+            Select...
           </option>
 
           <option value="technology">React</option>
@@ -24,8 +37,8 @@ export default function App() {
 
         <textarea placeholder="Descrição" rows={4} />
 
-        <button type="submit">Salvar</button>
+        <button type="submit">Save</button>
       </form>
     </div>
-  )
+  );
 }
