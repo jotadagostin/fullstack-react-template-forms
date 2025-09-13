@@ -3,12 +3,14 @@ import { Controller, useForm } from "react-hook-form";
 
 type FormData = {
   name: string;
+  date: string;
 };
 
 export default function App() {
   const { control, handleSubmit } = useForm<FormData>({
     defaultValues: {
       name: "",
+      date: "",
     },
   });
 
@@ -30,7 +32,13 @@ export default function App() {
         />
         <span className="error">Name is required</span>
 
-        <input type="date" placeholder="Nome do evento" />
+        <Controller
+          control={control}
+          name="date"
+          render={({ field }) => (
+            <input type="date" placeholder="Nome do evento" {...field} />
+          )}
+        />
 
         <select defaultValue="">
           <option value="" disabled>
