@@ -4,6 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 type FormData = {
   name: string;
   date: string;
+  subject: string;
 };
 
 export default function App() {
@@ -27,7 +28,7 @@ export default function App() {
           control={control}
           name="name"
           render={({ field }) => (
-            <input type="text" placeholder="Nome do evento" {...field} />
+            <input type="text" placeholder="Name of the event" {...field} />
           )}
         />
         <span className="error">Name is required</span>
@@ -36,20 +37,26 @@ export default function App() {
           control={control}
           name="date"
           render={({ field }) => (
-            <input type="date" placeholder="Nome do evento" {...field} />
+            <input type="date" placeholder="Name of the event" {...field} />
           )}
         />
 
-        <select defaultValue="">
-          <option value="" disabled>
-            Select...
-          </option>
+        <Controller
+          control={control}
+          name="subject"
+          render={({ field }) => (
+            <select {...field}>
+              <option value="" disabled>
+                Select...
+              </option>
 
-          <option value="technology">React</option>
-          <option value="entertainment">Node.js</option>
-          <option value="business">Javascript</option>
-          <option value="business">Typescript</option>
-        </select>
+              <option value="react">React</option>
+              <option value="nodejs">Node.js</option>
+              <option value="javascript">Javascript</option>
+              <option value="typescript">Typescript</option>
+            </select>
+          )}
+        />
 
         <textarea placeholder="Descrição" rows={4} />
 
